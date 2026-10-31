@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Send Sweetness · ECI Loves Goa Baking Co.</title>
+<meta name="description" content="Send a heart-shaped mochi and a spoken blessing to someone you appreciate at Edge City India.">
+<meta name="theme-color" content="#FFF3EC">
+<link rel="icon" href="art/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mukta:wght@400;500;600;700&family=Workbench&display=swap" rel="stylesheet">
+<style>
+/* Layout: the bakery page's marigold toran and sunburst mochi crew up top, then one column: the gift form, the thank-you card, and the baker's queue, each with its own mochi illustration. */
+:root {
+  --bg: #FFF3EC;
+  --card: #FFFFFF;
+  --ink: #2A1408;
+  --muted: #7A5646;
+  --line: #F0D6C8;
+  --orange: #F86429;
+  --pink: #E83E6E;
+  --pink-soft: #FFE1EA;
+  --mango: #FFC93C;
+  --mango-soft: #FFF1C9;
+  --teal: #0E7C74;
+  --teal-soft: #DAF2EE;
+  --leaf: #3E9A4C;
+  --art: #2A1408;
+  --plate: #FFF3EC;
+  --display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Mukta", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --pixel: "Workbench", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius: 20px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16112B; --card: #211A3B; --ink: #FFF1E8; --muted: #CDB8C8; --line: #3B3159;
+    --orange: #FF7A45; --pink: #FF6F98; --pink-soft: #3E1F3D; --mango: #FFD15C; --mango-soft: #3A3020;
+    --teal: #63D6CA; --teal-soft: #1C3A45; --leaf: #5DBB6A; --plate: #FFF3EC; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16112B; --card: #211A3B; --ink: #FFF1E8; --muted: #CDB8C8; --line: #3B3159;
+  --orange: #FF7A45; --pink: #FF6F98; --pink-soft: #3E1F3D; --mango: #FFD15C; --mango-soft: #3A3020;
+  --teal: #63D6CA; --teal-soft: #1C3A45; --leaf: #5DBB6A; --plate: #FFF3EC; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.wrap {
+  max-width: 620px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; border-radius: 8px; }
+h1, h2 { font-family: var(--display); font-weight: 800; line-height: 1.05; text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+p { margin: 0; }
+.label { font-family: var(--pixel); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+
+.toran { display: block; width: 100%; height: 46px; }
+.kolam { display: block; width: 132px; height: 26px; margin: 26px auto; color: var(--teal); opacity: .75; }
+
+/* Hero */
+.hero { padding-block: 6px 0; text-align: center; display: grid; justify-items: center; gap: 8px; }
+.hero-art { width: 100%; max-width: 330px; height: auto; }
+.hero h1 { font-size: clamp(2.3rem, 9vw, 3.3rem); }
+.hero h1 .love { color: var(--pink); }
+.send-title { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 6vw, 2rem); color: var(--orange); margin: 2px 0 0; }
+.motto { font-family: var(--display); font-weight: 600; font-size: 1.15rem; color: var(--pink); max-width: 30ch; }
+.lede { max-width: 46ch; color: var(--muted); }
+
+/* Cards */
+.card {
+  background: var(--card); border: 2px solid var(--art); border-radius: var(--radius);
+  box-shadow: 0 5px 0 var(--art); padding: 22px 20px; display: grid; gap: 18px;
+}
+:root[data-theme="dark"] .card { border-color: var(--line); box-shadow: 0 5px 0 #0B0818; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .card { border-color: var(--line); box-shadow: 0 5px 0 #0B0818; } }
+.card-head { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.card-head > div { min-width: 0; display: grid; gap: 4px; }
+.card h2 { font-size: clamp(1.45rem, 5.4vw, 1.8rem); }
+.plate { background: var(--plate); border-radius: 999px; padding: 6px; width: 104px; height: 104px; display: grid; place-items: center; border: 2px solid var(--line); }
+.plate img { width: 100%; height: 100%; object-fit: contain; }
+.plate.wide { border-radius: 18px; width: 100%; height: auto; padding: 10px 14px; }
+.plate.wide img { height: auto; max-height: 190px; }
+
+/* Form */
+.field-label { font-family: var(--display); font-weight: 700; font-size: 1.02rem; display: block; margin-bottom: 6px; }
+.hint { font-family: var(--body); font-weight: 400; color: var(--muted); font-size: .92rem; }
+input[type=text] {
+  width: 100%; font: inherit; padding: 12px 14px; border-radius: 14px; border: 2px solid var(--line);
+  background: var(--bg); color: var(--ink);
+}
+input[type=text]::placeholder { color: var(--muted); opacity: .8; }
+input[type=text]:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px var(--pink-soft); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 440px) { .row { grid-template-columns: 1fr; } }
+
+.blessings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 360px) { .blessings { grid-template-columns: repeat(2, 1fr); } }
+.chip {
+  appearance: none; cursor: pointer; font: 700 .98rem/1.1 var(--display); color: var(--ink);
+  background: var(--card); border: 2px solid var(--line); border-radius: 18px;
+  padding: 10px 6px 8px; display: grid; justify-items: center; gap: 4px; min-height: 84px;
+  transition: transform .12s, border-color .12s, background .12s;
+}
+.chip svg { width: 40px; height: 35px; overflow: visible; }
+.chip:hover { border-color: var(--pink); }
+.chip[aria-pressed="true"] { background: var(--pink-soft); border-color: var(--pink); transform: translateY(-2px); }
+.chip[aria-pressed="true"] svg { animation: hop .5s ease; }
+.blessing-line { font-family: var(--display); font-weight: 600; font-size: 1.12rem; color: var(--pink); min-height: 1.5em; margin-top: 8px; text-align: center; }
+
+.rec { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.timer { font-family: var(--pixel); font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+audio { width: 100%; height: 40px; margin-top: 10px; }
+.note { font-size: .92rem; color: var(--muted); margin-top: 6px; }
+.note.warn { color: var(--pink); font-weight: 600; }
+.check { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; cursor: pointer; }
+.check input { width: 22px; height: 22px; accent-color: var(--leaf); }
+.chip-in-row { align-items: end; }
+
+/* Buttons, in the bakery's chunky outline style */
+.btn {
+  appearance: none; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 46px; padding: 10px 20px; border-radius: 999px;
+  font: 700 1.02rem/1 var(--display); color: #2A1408;
+  border: 2px solid var(--art); box-shadow: 0 3px 0 var(--art);
+  transition: transform .12s, box-shadow .12s;
+}
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--art); }
+.btn-pink { background: var(--pink); color: #fff; }
+.btn-orange { background: var(--orange); }
+.btn-mango { background: var(--mango); }
+.btn-plain { background: var(--card); color: var(--ink); }
+.btn-big { width: 100%; min-height: 56px; font-size: 1.2rem; }
+.btn-small { min-height: 38px; padding: 8px 14px; font-size: .92rem; }
+:root[data-theme="dark"] .btn-plain { border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-plain { border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); } }
+.btn-rec.on { background: #C42656; color: #fff; animation: pulse 1.2s ease-in-out infinite; }
+
+/* Thank-you */
+.thanks { text-align: center; justify-items: center; background: var(--teal-soft); }
+.thanks h2 { color: var(--teal); }
+.confetti { position: relative; width: 100%; }
+.confetti use { animation: none; }
+
+/* Baker's queue */
+.queue { display: grid; gap: 12px; }
+.gift {
+  border: 2px solid var(--line); border-radius: 18px; padding: 14px; background: var(--bg);
+  display: grid; grid-template-columns: 54px 1fr; gap: 4px 12px; align-items: start;
+}
+.gift > svg { width: 54px; height: 48px; overflow: visible; grid-row: span 3; }
+.gift-body { min-width: 0; display: grid; gap: 4px; }
+.gift.done { opacity: .5; filter: grayscale(.7); }
+.gift-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.gift-to { font-family: var(--display); font-weight: 800; font-size: 1.25rem; line-height: 1.1; }
+.gift-time { font-family: var(--pixel); font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+.gift-bless { font-family: var(--display); font-weight: 600; color: var(--pink); }
+.gift-from { color: var(--muted); }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+.tag { font-size: .8rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--mango-soft); color: var(--ink); border: 1.5px solid var(--line); }
+.tag.pif { background: var(--teal-soft); }
+.gift-actions { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.empty { text-align: center; color: var(--muted); padding: 6px 0; display: grid; justify-items: center; gap: 6px; }
+.empty svg { width: 64px; height: 56px; overflow: visible; }
+
+footer { display: grid; justify-items: center; gap: 8px; padding: 6px 0 30px; text-align: center; }
+footer .thanks-line { color: var(--muted); font-size: .95rem; max-width: 40ch; }
+
+/* Mochi motion: a slow bob and a twinkle, nothing loud */
+@keyframes pulse { 50% { box-shadow: 0 3px 0 var(--art), 0 0 0 8px var(--pink-soft); } }
+@keyframes hop { 40% { transform: translateY(-6px) rotate(-4deg); } 100% { transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .bob { animation: bob 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  .bob.d1 { animation-delay: -1.2s; } .bob.d2 { animation-delay: -2.4s; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) scale(1, 1); } 50% { transform: translateY(-3px) scale(1.01, .99); } }
+  .twinkle { animation: twinkle 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .twinkle.d1 { animation-delay: -.9s; } .twinkle.d2 { animation-delay: -1.8s; }
+  @keyframes twinkle { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(.7); opacity: .6; } }
+  .sun-rays { animation: spin 90s linear infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .pop { animation: popin .5s cubic-bezier(.2,1.4,.4,1); }
+  @keyframes popin { from { transform: scale(.9); opacity: .4; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-rec.on, .chip[aria-pressed="true"] svg { animation: none; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mochi" viewBox="0 0 80 70" overflow="visible">
+      <path d="M40 66 C15 51, 4 37, 6 23 C8 11, 20 4.5, 30 7 C35 8.4, 38 11.5, 40 15 C42 11.5, 45 8.4, 50 7 C60 4.5, 72 11, 74 23 C76 37, 65 51, 40 66 Z" fill="currentColor" stroke="#2A1408" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M40 62 C22 51, 12 41, 11 29 C24 37, 56 37, 69 29 C68 41, 58 51, 40 62 Z" fill="#B85A12" opacity=".16"/>
+      <ellipse cx="22" cy="17" rx="7" ry="3.4" fill="#FFFFFF" opacity=".6" transform="rotate(-30 22 17)"/>
+      <path d="M52 15 l3 3 l-1 3 M57 13 l2 -1 M19 27 l3 1" fill="none" stroke="#9A4A0E" stroke-width="1.2" stroke-linecap="round" opacity=".45"/>
+      <g class="eyes">
+        <ellipse cx="31" cy="32" rx="4.2" ry="5.6" fill="#2A1408"/>
+        <ellipse cx="49" cy="32" rx="4.2" ry="5.6" fill="#2A1408"/>
+        <circle cx="32.6" cy="29.7" r="1.8" fill="#FFFFFF"/>
+        <circle cx="50.6" cy="29.7" r="1.8" fill="#FFFFFF"/>
+        <circle cx="29.8" cy="34.3" r=".85" fill="#FFFFFF"/>
+        <circle cx="47.8" cy="34.3" r=".85" fill="#FFFFFF"/>
+      </g>
+      <ellipse cx="22.5" cy="39" rx="4.4" ry="2.5" fill="#FF6F96" opacity=".7"/>
+      <ellipse cx="57.5" cy="39" rx="4.4" ry="2.5" fill="#FF6F96" opacity=".7"/>
+      <path d="M36.4 38.6 q1.8 2.3 3.6 0 q1.8 2.3 3.6 0" fill="none" stroke="#2A1408" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="sparkle" viewBox="-10 -10 20 20" overflow="visible">
+      <path d="M0 -10 C1.2 -2.5 2.5 -1.2 10 0 C2.5 1.2 1.2 2.5 0 10 C-1.2 2.5 -2.5 1.2 -10 0 C-2.5 -1.2 -1.2 -2.5 0 -10 Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="marigold" viewBox="-12 -12 24 24" overflow="visible">
+      <circle cx="7.00" cy="0.00" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="6.06" cy="3.50" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="3.50" cy="6.06" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="0.00" cy="7.00" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="-3.50" cy="6.06" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="-6.06" cy="3.50" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="-7.00" cy="0.00" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="-6.06" cy="-3.50" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="-3.50" cy="-6.06" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="-0.00" cy="-7.00" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="3.50" cy="-6.06" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="6.06" cy="-3.50" r="3.4" fill="#F86429" stroke="#2A1408" stroke-width=".8"/>
+<circle cx="3.51" cy="1.45" r="2.7" fill="#FFA62B"/>
+<circle cx="1.45" cy="3.51" r="2.7" fill="#FFA62B"/>
+<circle cx="-1.45" cy="3.51" r="2.7" fill="#FFA62B"/>
+<circle cx="-3.51" cy="1.45" r="2.7" fill="#FFA62B"/>
+<circle cx="-3.51" cy="-1.45" r="2.7" fill="#FFA62B"/>
+<circle cx="-1.45" cy="-3.51" r="2.7" fill="#FFA62B"/>
+<circle cx="1.45" cy="-3.51" r="2.7" fill="#FFA62B"/>
+<circle cx="3.51" cy="-1.45" r="2.7" fill="#FFA62B"/>
+<circle r="2.3" fill="#C2410C"/>
+    </symbol>
+    <pattern id="toran-pat" width="44" height="46" patternUnits="userSpaceOnUse">
+      <path d="M0 5 Q22 11 44 5" fill="none" stroke="#2A1408" stroke-width="1.4" opacity=".55"/>
+      <use href="#marigold" x="-10" y="-1" width="20" height="20" transform="translate(11 0)"/>
+      <path d="M33 8 C27 18, 29 30, 33 38 C37 30, 39 18, 33 8 Z" fill="#3E9A4C" stroke="#2A1408" stroke-width="1.2" stroke-linejoin="round"/>
+      <path d="M33 11 L33 34" stroke="#2A1408" stroke-width=".9" opacity=".5"/>
+    </pattern>
+  </defs>
+</svg>
+<svg class="toran" aria-hidden="true">
+  <rect width="100%" height="46" fill="url(#toran-pat)"/>
+</svg>
+
+<header class="hero wrap">
+        <svg class="hero-art" viewBox="0 0 360 260" role="img" aria-label="Three smiling heart-shaped golden mochi sitting on a banana leaf under a big sun, with a cup of chai beside them. The white one says Namaskar.">
+        <g class="sun-rays"><polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(0.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(22.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(45.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(67.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(90.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(112.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(135.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(157.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(180.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(202.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(225.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(247.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(270.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(292.5 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(315.0 180 104)"/>
+<polygon points="175,54 185,54 180,18" fill="#FFC93C" stroke="#2A1408" stroke-width="1.6" stroke-linejoin="round" transform="rotate(337.5 180 104)"/></g>
+        <circle cx="180" cy="104" r="44" fill="#FFC93C" stroke="#2A1408" stroke-width="2.4"/>
+        <circle cx="180" cy="104" r="33" fill="#FFD866"/>
+        <!-- banana leaf -->
+        <path d="M14 228 C86 190, 270 188, 348 216 C276 252, 88 258, 14 228 Z" fill="#3E9A4C" stroke="#2A1408" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M20 227 C116 217, 236 214, 342 216" fill="none" stroke="#2A6B33" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M56 221 L72 206 M56 221 L72 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M86 221 L102 206 M86 221 L102 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M116 221 L132 206 M116 221 L132 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M146 221 L162 206 M146 221 L162 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M176 221 L192 206 M176 221 L192 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M206 221 L222 206 M206 221 L222 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M236 221 L252 206 M236 221 L252 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M266 221 L282 206 M266 221 L282 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+<path d="M296 221 L312 206 M296 221 L312 237" stroke="#2A6B33" stroke-width="1.4" stroke-linecap="round" opacity=".55" fill="none"/>
+        <!-- chai kulhad -->
+        <g>
+          <path d="M18 196 L40 196 L36 222 L22 222 Z" fill="#C8613A" stroke="#2A1408" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M19 202 L39 202" stroke="#2A1408" stroke-width="1.4" opacity=".5"/>
+          <path d="M24 190 c-3 -5 3 -7 0 -12 M32 190 c-3 -5 3 -7 0 -12" fill="none" stroke="#2A1408" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+        </g>
+        <!-- pink mochi with a marigold -->
+        <g class="bob d1">
+          <use href="#mochi" x="40" y="139.5" width="100" height="87.5" style="color:#F7B84B"/>
+          <use href="#marigold" x="98" y="138" width="24" height="24"/>
+        </g>
+        <!-- white mochi -->
+        <g class="bob d2">
+          <use href="#mochi" x="228" y="143" width="96" height="84" style="color:#FBD27A"/>
+        </g>
+        <!-- mango mochi, front and centre -->
+        <g class="bob">
+          <use href="#mochi" x="122" y="126" width="116" height="101.5" style="color:#F2952E"/>
+          <path d="M180 148 q-1 -8 2.5 -12.5" fill="none" stroke="#2A1408" stroke-width="2.2" stroke-linecap="round"/>
+          <ellipse cx="191" cy="134" rx="10.5" ry="4.6" fill="#3E9A4C" stroke="#2A1408" stroke-width="1.8" transform="rotate(-28 191 134)"/>
+        </g>
+        <!-- speech bubble -->
+        <g>
+          <rect x="246" y="92" width="100" height="32" rx="16" fill="#FFFFFF" stroke="#2A1408" stroke-width="2.2"/>
+          <path d="M276 123 L270 140 L288 123" fill="#FFFFFF" stroke="#2A1408" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M275 121.6 L289 121.6" stroke="#FFFFFF" stroke-width="3"/>
+          <text x="296" y="113.5" text-anchor="middle" font-family="'Baloo 2', 'Trebuchet MS', sans-serif" font-weight="700" font-size="15" fill="#2A1408">Namaskar!</text>
+        </g>
+        <!-- sparkles -->
+        <use class="twinkle" href="#sparkle" x="54" y="64" width="18" height="18" style="color:#E83E6E"/>
+        <use class="twinkle d1" href="#sparkle" x="300" y="46" width="16" height="16" style="color:#F86429"/>
+        <use class="twinkle d2" href="#sparkle" x="30" y="122" width="12" height="12" style="color:#0E9C90"/>
+        <use class="twinkle" href="#sparkle" x="330" y="160" width="12" height="12" style="color:#E83E6E"/>
+      </svg>
+  <p class="label">Edge City India 2026 · Mandrem, North Goa</p>
+  <h1>ECI <span class="love">Loves</span> Goa Baking Co.</h1>
+  <p class="send-title">Send sweetness</p>
+  <p class="motto">Be good to one another, and when you can… be sweet.</p>
+  <p class="lede">Pick someone you appreciate. We portion their mochi into a heart, speak your blessing over it as we bake, and pass it along with your voice note.</p>
+</header>
+
+<div class="wrap">  <svg class="kolam" viewBox="0 0 132 26" aria-hidden="true"><ellipse cx="66.00" cy="7.50" rx="2.4" ry="5" transform="rotate(0 66.00 7.50)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="69.89" cy="9.11" rx="2.4" ry="5" transform="rotate(45 69.89 9.11)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="71.50" cy="13.00" rx="2.4" ry="5" transform="rotate(90 71.50 13.00)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="69.89" cy="16.89" rx="2.4" ry="5" transform="rotate(135 69.89 16.89)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="66.00" cy="18.50" rx="2.4" ry="5" transform="rotate(180 66.00 18.50)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="62.11" cy="16.89" rx="2.4" ry="5" transform="rotate(225 62.11 16.89)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="60.50" cy="13.00" rx="2.4" ry="5" transform="rotate(270 60.50 13.00)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="62.11" cy="9.11" rx="2.4" ry="5" transform="rotate(315 62.11 9.11)" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="66" cy="13" r="1.8" fill="currentColor"/><circle cx="46" cy="13" r="1.9" fill="currentColor"/><circle cx="86" cy="13" r="1.9" fill="currentColor"/><circle cx="35" cy="13" r="1.5" fill="currentColor"/><circle cx="97" cy="13" r="1.5" fill="currentColor"/><circle cx="25" cy="13" r="1.1" fill="currentColor"/><circle cx="107" cy="13" r="1.1" fill="currentColor"/><circle cx="16" cy="13" r="0.8" fill="currentColor"/><circle cx="116" cy="13" r="0.8" fill="currentColor"/></svg></div>
+
+<main class="wrap" style="display:grid;gap:26px;">
+  <form id="giftForm" class="card" novalidate>
+    <div class="card-head">
+      <div>
+        <p class="label" style="color:var(--pink)">A mochi and a kind word</p>
+        <h2>Who are you sending sweetness to?</h2>
+      </div>
+      <div class="plate"><img src="art/p6_give.png" alt="" width="92" height="92"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label class="field-label" for="to">Their first name</label>
+        <input type="text" id="to" maxlength="40" autocomplete="off" required placeholder="e.g. Priya">
+      </div>
+      <div>
+        <label class="field-label" for="from">Your first name</label>
+        <input type="text" id="from" maxlength="40" autocomplete="given-name" required placeholder="e.g. Sid">
+      </div>
+    </div>
+
+    <div>
+      <span class="field-label" id="blessLabel">Pick a blessing</span>
+      <div class="blessings" role="group" aria-labelledby="blessLabel" id="blessings"></div>
+      <p class="blessing-line" id="blessingLine" aria-live="polite"></p>
+    </div>
+
+    <div>
+      <span class="field-label">Say a few words <span class="hint">(voice note, up to 30 seconds)</span></span>
+      <div class="rec">
+        <button type="button" class="btn btn-mango btn-rec" id="recBtn">● Record</button>
+        <span class="timer" id="timer">0:00 / 0:30</span>
+        <button type="button" class="btn btn-plain btn-small" id="reRecBtn" hidden>Re-record</button>
+      </div>
+      <audio id="preview" controls hidden></audio>
+      <p class="note" id="micNote">Try "I appreciate you." or "You are loved."</p>
+    </div>
+
+    <div class="row">
+      <label class="check" for="pif"><input type="checkbox" id="pif"> Pass it on: I'd like this kindness to travel to someone else too</label>
+    </div>
+
+    <p class="note warn" id="formError" role="alert" hidden></p>
+    <button type="submit" class="btn btn-pink btn-big">Send sweetness ♡</button>
+  </form>
+
+  <section class="card thanks" id="thanks" hidden aria-live="polite">
+    <div class="plate wide"><img src="art/words.png" alt="Two heart-shaped mochi on a banana leaf. One says I appreciate you, the other says You are loved." width="1440" height="1080"></div>
+    <h2>Your sweetness is on its way</h2>
+    <p id="thanksLine"></p>
+    <button type="button" class="btn btn-orange" id="againBtn">Send another</button>
+  </section>
+
+  <section class="card" aria-labelledby="queueTitle">
+    <div class="card-head">
+      <div>
+        <p class="label">For the bakers</p>
+        <h2 id="queueTitle">Baker's queue</h2>
+        <p class="note" style="margin:0">Speak each blessing over the mochi as you portion it into the heart mold.</p>
+      </div>
+      <div class="plate"><img src="art/p5_speak.png" alt="" width="92" height="92"></div>
+    </div>
+    <div class="queue" id="queue"></div>
+  </section>
+</main>
+
+<div class="wrap">  <svg class="kolam" viewBox="0 0 132 26" aria-hidden="true"><ellipse cx="66.00" cy="7.50" rx="2.4" ry="5" transform="rotate(0 66.00 7.50)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="69.89" cy="9.11" rx="2.4" ry="5" transform="rotate(45 69.89 9.11)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="71.50" cy="13.00" rx="2.4" ry="5" transform="rotate(90 71.50 13.00)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="69.89" cy="16.89" rx="2.4" ry="5" transform="rotate(135 69.89 16.89)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="66.00" cy="18.50" rx="2.4" ry="5" transform="rotate(180 66.00 18.50)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="62.11" cy="16.89" rx="2.4" ry="5" transform="rotate(225 62.11 16.89)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="60.50" cy="13.00" rx="2.4" ry="5" transform="rotate(270 60.50 13.00)" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="62.11" cy="9.11" rx="2.4" ry="5" transform="rotate(315 62.11 9.11)" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="66" cy="13" r="1.8" fill="currentColor"/><circle cx="46" cy="13" r="1.9" fill="currentColor"/><circle cx="86" cy="13" r="1.9" fill="currentColor"/><circle cx="35" cy="13" r="1.5" fill="currentColor"/><circle cx="97" cy="13" r="1.5" fill="currentColor"/><circle cx="25" cy="13" r="1.1" fill="currentColor"/><circle cx="107" cy="13" r="1.1" fill="currentColor"/><circle cx="16" cy="13" r="0.8" fill="currentColor"/><circle cx="116" cy="13" r="0.8" fill="currentColor"/></svg></div>
+
+<footer class="wrap">
+  <p class="thanks-line"><strong>Dev borem korum</strong> (thank you) to the Goan kitchens and neighbors who welcome us, and to everyone baking alongside us.</p>
+</footer>
+
+<script>
+(function () {
+  var KEY = "eci-send-sweetness-v1";
+  var MAX_SECONDS = 30;
+  // Each blessing gets its own mochi color and a little topper.
+  var BLESSINGS = [
+    { id: "love",        color: "#F49AB0", top: "heart" },
+    { id: "joy",         color: "#FFC93C", top: "sparkle" },
+    { id: "hope",        color: "#F7B84B", top: "leaf" },
+    { id: "peace",       color: "#FBD27A", top: "none" },
+    { id: "healing",     color: "#B8DDA6", top: "leaf" },
+    { id: "fulfillment", color: "#F2952E", top: "marigold" }
+  ];
+  var byId = {}; BLESSINGS.forEach(function (b) { byId[b.id] = b; });
+
+  function mochiSvg(b, cls) {
+    var top = "";
+    if (b.top === "heart") top = '<path d="M66 6 c-3 -4 -9 -1 -6 4 l6 6 l6 -6 c3 -5 -3 -8 -6 -4z" fill="#E83E6E" stroke="#2A1408" stroke-width="1.6"/>';
+    if (b.top === "sparkle") top = '<use href="#sparkle" x="60" y="-4" width="16" height="16" style="color:#F86429"/>';
+    if (b.top === "leaf") top = '<path d="M40 15 q-.5 -5 1.5 -8" fill="none" stroke="#2A1408" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="48" cy="5" rx="7.5" ry="3.4" fill="#3E9A4C" stroke="#2A1408" stroke-width="1.5" transform="rotate(-28 48 5)"/>';
+    if (b.top === "marigold") top = '<use href="#marigold" x="54" y="-6" width="22" height="22"/>';
+    return '<svg class="' + (cls || "") + '" viewBox="0 0 80 70" aria-hidden="true"><use href="#mochi" style="color:' + b.color + '"/>' + top + '</svg>';
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $("giftForm"), blessWrap = $("blessings"), blessingLine = $("blessingLine");
+  var recBtn = $("recBtn"), reRecBtn = $("reRecBtn"), timerEl = $("timer"), preview = $("preview"), micNote = $("micNote");
+  var formError = $("formError"), thanks = $("thanks"), thanksLine = $("thanksLine"), queueEl = $("queue");
+  var NOTE_DEFAULT = micNote.textContent;
+
+  var selected = null, audioDataUrl = null, recorder = null, chunks = [], stream = null, tick = null, seconds = 0;
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(list) { localStorage.setItem(KEY, JSON.stringify(list)); } // may throw QuotaExceededError
+
+  // Blessing buttons
+  BLESSINGS.forEach(function (b) {
+    var btn = document.createElement("button");
+    btn.type = "button"; btn.className = "chip"; btn.setAttribute("aria-pressed", "false");
+    btn.innerHTML = mochiSvg(b);
+    var name = document.createElement("span"); name.textContent = b.id.charAt(0).toUpperCase() + b.id.slice(1);
+    btn.appendChild(name);
+    btn.addEventListener("click", function () {
+      selected = b.id;
+      Array.prototype.forEach.call(blessWrap.children, function (c) { c.setAttribute("aria-pressed", String(c === btn)); });
+      blessingLine.textContent = "May you experience " + b.id + ".";
+    });
+    blessWrap.appendChild(btn);
+  });
+
+  // Voice note
+  var canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+  if (!canRecord) {
+    recBtn.disabled = true;
+    micNote.textContent = "Voice notes aren't supported in this browser. You can still send your gift without one.";
+  }
+  function fmt(s) { return "0:" + String(s).padStart(2, "0"); }
+  function pickMime() {
+    var types = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg"];
+    for (var i = 0; i < types.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(types[i])) return types[i];
+    return "";
+  }
+  function stopRecording() { if (recorder && recorder.state !== "inactive") recorder.stop(); clearInterval(tick); }
+  function resetRecording() {
+    stopRecording();
+    audioDataUrl = null; seconds = 0;
+    preview.hidden = true; preview.removeAttribute("src");
+    reRecBtn.hidden = true; recBtn.hidden = false;
+    recBtn.textContent = "● Record"; recBtn.classList.remove("on");
+    timerEl.textContent = fmt(0) + " / " + fmt(MAX_SECONDS);
+    micNote.textContent = NOTE_DEFAULT; micNote.classList.remove("warn");
+  }
+  recBtn.addEventListener("click", function () {
+    if (recorder && recorder.state === "recording") { stopRecording(); return; }
+    micNote.classList.remove("warn");
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+      stream = s; chunks = []; seconds = 0;
+      var mime = pickMime();
+      recorder = mime ? new MediaRecorder(s, { mimeType: mime, audioBitsPerSecond: 32000 }) : new MediaRecorder(s);
+      recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+      recorder.onstop = function () {
+        stream.getTracks().forEach(function (t) { t.stop(); });
+        var blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+        var reader = new FileReader();
+        reader.onload = function () {
+          audioDataUrl = reader.result;
+          preview.src = audioDataUrl; preview.hidden = false;
+          recBtn.hidden = true; reRecBtn.hidden = false; recBtn.classList.remove("on");
+          micNote.textContent = "Lovely. Give it a listen, or re-record.";
+        };
+        reader.readAsDataURL(blob);
+      };
+      recorder.start();
+      recBtn.textContent = "■ Stop"; recBtn.classList.add("on");
+      micNote.textContent = "Recording… speak from the heart.";
+      timerEl.textContent = fmt(0) + " / " + fmt(MAX_SECONDS);
+      tick = setInterval(function () {
+        seconds++;
+        timerEl.textContent = fmt(seconds) + " / " + fmt(MAX_SECONDS);
+        if (seconds >= MAX_SECONDS) stopRecording();
+      }, 1000);
+    }).catch(function () {
+      micNote.textContent = "We couldn't use your microphone. Check the browser's mic permission, or send your gift without a voice note.";
+      micNote.classList.add("warn");
+    });
+  });
+  reRecBtn.addEventListener("click", resetRecording);
+
+  // Submit
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    formError.hidden = true;
+    var to = $("to").value.trim(), from = $("from").value.trim();
+    var missing = [];
+    if (!to) missing.push("their first name");
+    if (!from) missing.push("your first name");
+    if (!selected) missing.push("a blessing");
+    if (missing.length) { formError.textContent = "Please add " + missing.join(", ") + "."; formError.hidden = false; return; }
+    if (recorder && recorder.state === "recording") { formError.textContent = "Stop the recording first, then send."; formError.hidden = false; return; }
+
+    var gift = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      to: to, from: from, blessing: selected,
+      payItForward: $("pif").checked,
+      audio: audioDataUrl, createdAt: new Date().toISOString(), delivered: false
+    };
+    var list = load(); list.push(gift);
+    try { save(list); }
+    catch (err) {
+      formError.textContent = "This device's storage is full, so the gift couldn't be saved. Try a shorter voice note or send without one.";
+      formError.hidden = false; return;
+    }
+    thanksLine.textContent = to + " will receive a heart-shaped mochi with a blessing of " + selected + ".";
+    form.hidden = true; thanks.hidden = false; thanks.classList.remove("pop"); void thanks.offsetWidth; thanks.classList.add("pop");
+    form.reset(); selected = null; blessingLine.textContent = "";
+    Array.prototype.forEach.call(blessWrap.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+    resetRecording();
+    render();
+    thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+  $("againBtn").addEventListener("click", function () { thanks.hidden = true; form.hidden = false; $("to").focus(); });
+
+  // Baker's queue
+  function when(iso) { return new Date(iso).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); }
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function render() {
+    var list = load().slice().sort(function (a, b) {
+      if (a.delivered !== b.delivered) return a.delivered ? 1 : -1;
+      return b.createdAt.localeCompare(a.createdAt);
+    });
+    queueEl.innerHTML = "";
+    if (!list.length) {
+      var empty = el("div", "empty");
+      empty.innerHTML = mochiSvg(byId.peace, "bob");
+      empty.appendChild(el("p", null, "No gifts yet. The first one you send shows up here."));
+      queueEl.appendChild(empty); return;
+    }
+    list.forEach(function (g) {
+      var b = byId[g.blessing] || byId.peace;
+      var item = el("article", "gift" + (g.delivered ? " done" : ""));
+      item.innerHTML = mochiSvg(b, g.delivered ? "" : "bob");
+      var body = el("div", "gift-body");
+      var top = el("div", "gift-top");
+      top.appendChild(el("span", "gift-to", "For " + g.to));
+      top.appendChild(el("span", "gift-time", when(g.createdAt)));
+      body.appendChild(top);
+      body.appendChild(el("div", "gift-bless", "May you experience " + g.blessing + "."));
+      body.appendChild(el("div", "gift-from", "From " + g.from));
+      var tags = el("div", "tags");
+      
+      if (g.payItForward) tags.appendChild(el("span", "tag pif", "Pass it on"));
+      if (g.delivered) tags.appendChild(el("span", "tag", "Delivered"));
+      if (tags.children.length) body.appendChild(tags);
+      item.appendChild(body);
+      var actions = el("div", "gift-actions");
+      if (g.audio) {
+        var audio = new Audio(g.audio);
+        var play = el("button", "btn btn-mango btn-small", "▶ Play voice note"); play.type = "button";
+        play.addEventListener("click", function () {
+          if (audio.paused) { audio.play(); play.textContent = "❚❚ Pause"; } else { audio.pause(); play.textContent = "▶ Play voice note"; }
+        });
+        audio.addEventListener("ended", function () { play.textContent = "▶ Play voice note"; });
+        actions.appendChild(play);
+      }
+      var mark = el("button", "btn btn-plain btn-small", g.delivered ? "Undo delivered" : "Mark delivered"); mark.type = "button";
+      mark.addEventListener("click", function () {
+        var all = load();
+        all.forEach(function (x) { if (x.id === g.id) x.delivered = !x.delivered; });
+        try { save(all); } catch (e) {}
+        render();
+      });
+      actions.appendChild(mark);
+      item.appendChild(actions);
+      queueEl.appendChild(item);
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>
